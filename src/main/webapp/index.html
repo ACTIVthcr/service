@@ -1,0 +1,23 @@
+<html>
+<head>
+</head>
+<body>
+<h2>Welcome</h2>
+<div>
+	<span>Update services available (like a swagger)</span>
+</div>
+<div>
+	<ul>
+		<li id="service1"></li>
+		<li id="service2"></li>
+		<li id="service3"></li>
+	</ul>
+</div>
+</body>
+<script type="text/javascript">
+	var host = location.href;
+	document.getElementById('service1').innerHTML = host + "rest/ping";
+	document.getElementById('service2').innerHTML = host + "rest/car/get";
+	document.getElementById('service3').innerHTML = host + "rest/car/create";
+</script>
+</html>
