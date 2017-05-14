@@ -30,6 +30,7 @@ public class CarDaoService {
 	session.save(car);
 	trans.commit();
 	session.close();
+	LOGGER.info("idNumber created: " + car.getIdNumber());
 	return car.getIdNumber();
     }
 
@@ -43,6 +44,7 @@ public class CarDaoService {
 	    list.add((Car) o);
 	}
 	session.close();
+	LOGGER.info("car read: " + list.toString());
 	return list;
     }
     
@@ -55,6 +57,7 @@ public class CarDaoService {
 	    list.add((Car) o);
 	}
 	session.close();
+	LOGGER.info("cars read: " + list.toString());
 	return list;
     }
 
@@ -71,6 +74,7 @@ public class CarDaoService {
 	}
 	trans.commit();
 	session.close();
+	LOGGER.info("car updated: " + list.toString());
 	return list;
     }
 

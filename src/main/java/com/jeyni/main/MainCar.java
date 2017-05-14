@@ -17,6 +17,10 @@ public class MainCar {
 	Car car = Car.builder().name("test1").ownerName("ownertest").build();
 	String UUIDCar = CarDaoService.create(car);
 	LOGGER.info(CarDaoService.read(UUIDCar));
+<<<<<<< HEAD
+=======
+	LOGGER.info(CarDaoService.read());
+>>>>>>> 1343ea9... add Facebook4j
 	LOGGER.info(CarDaoService.delete(UUIDCar));
     }
 
