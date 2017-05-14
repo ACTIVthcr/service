@@ -1,15 +1,14 @@
-package service.IT.test;
+package service.unit.test;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class CarDaoServiceIT {
+public class CarTest {
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-	
     }
 
     @Before
