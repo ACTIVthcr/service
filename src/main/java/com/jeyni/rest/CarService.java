@@ -1,5 +1,6 @@
 package com.jeyni.rest;
 
+import java.net.HttpURLConnection;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -22,7 +23,14 @@ import com.jeyni.dao.CarDaoService;
 import com.jeyni.view.CarView;
 import com.jeyni.view.ListCarView;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @Path("/car")
+@Api(value = "/car")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class CarService {
@@ -31,7 +39,13 @@ public class CarService {
 
     @POST
     @Path("/create")
-    public Response carCreate(@NotNull Car car) {
+    @ApiOperation(value = "create a car", notes = "a note")
+    @ApiResponses(value = {
+	    @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "car created"),
+	    @ApiResponse(code = HttpURLConnection.HTTP_INTERNAL_ERROR, message = "internal error")
+    })
+    public Response carCreate(@ApiParam(value = "The JSON object which describe a car",
+		required = true) @NotNull Car car) {
 	Gson gson = new Gson();
 	LOGGER.info(car.toString());
 	try {
