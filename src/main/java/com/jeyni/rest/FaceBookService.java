@@ -13,12 +13,12 @@ import com.jeyni.bean.PersonFromFacebook;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class FaceBookService {
-    
-    @GET
-    @Path("/get")
-    public Response userList(String userName) {
-	PersonFromFacebook personFromFacebook = new PersonFromFacebook();
-	return  Response.status(200).entity(personFromFacebook.getListNameResearch(userName)).build();
-    }
+
+	@GET
+	@Path("/get")
+	public Response userList(String userName) {
+		PersonFromFacebook personFromFacebook = new PersonFromFacebook();
+		return Response.status(200).entity(personFromFacebook.getListNameResearch(userName)).build();
+	}
 
 }

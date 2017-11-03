@@ -26,26 +26,26 @@ import lombok.ToString;
 @Builder
 public class Car {
 
-    @Column
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @Column
-    @Setter
-    private String name;
-    @Column
-    @Setter
-    private String ownerName;
-    @Column
-    @Setter
-    private int seatNumber;
-    @Column
-    @Setter
-    private String idNumber;
-    
-    public Car fromCarView(CarView carView) {
-	return Car.builder().name(carView.getName()).ownerName(carView.getCarOwnerName())
-		.seatNumber(carView.getNumberOfSeats()).idNumber(carView.getIdNumber()).build();
-    }
+	@Column
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@Column
+	@Setter
+	private String name;
+	@Column
+	@Setter
+	private String ownerName;
+	@Column
+	@Setter
+	private int seatNumber;
+	@Column
+	@Setter
+	private String idNumber;
+
+	public Car fromCarView(CarView carView) {
+		return Car.builder().name(carView.getName()).ownerName(carView.getCarOwnerName())
+				.seatNumber(carView.getNumberOfSeats()).idNumber(carView.getIdNumber()).build();
+	}
 
 }

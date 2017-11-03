@@ -14,19 +14,19 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Getter
 public class CarView {
-    
-    @Setter
-    private int numberOfSeats;
-    @Setter
-    private String carOwnerName;
-    @Setter
-    private String name;
-    @Setter
-    private String idNumber;
 
-    public CarView fromCar(Car car) {
-	return CarView.builder().numberOfSeats(car.getSeatNumber()).carOwnerName(car.getOwnerName()).name(car.getName())
-		.idNumber(car.getIdNumber()).build();
-    }
+	@Setter
+	private int numberOfSeats;
+	@Setter
+	private String carOwnerName;
+	@Setter
+	private String name;
+	@Setter
+	private String idNumber;
+
+	public CarView fromCar(Car car) {
+		return CarView.builder().numberOfSeats(car.getSeatNumber()).carOwnerName(car.getOwnerName()).name(car.getName())
+				.idNumber(car.getIdNumber()).build();
+	}
 
 }

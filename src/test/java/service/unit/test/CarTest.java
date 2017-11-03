@@ -7,17 +7,17 @@ import org.junit.Test;
 
 public class CarTest {
 
-    @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
-    }
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
 
-    @Before
-    public void setUp() throws Exception {
-    }
+	@Before
+	public void setUp() throws Exception {
+	}
 
-    @Test
-    public void test() {
-	Assert.assertNotNull(1);
-    }
+	@Test
+	public void test() {
+		Assert.assertNotNull(1);
+	}
 
 }

@@ -35,76 +35,74 @@ import io.swagger.annotations.ApiResponses;
 @Consumes(MediaType.APPLICATION_JSON)
 public class CarService {
 
-    private static final Logger LOGGER = Logger.getLogger(CarService.class);
+	private static final Logger LOGGER = Logger.getLogger(CarService.class);
 
-    @POST
-    @Path("/create")
-    @ApiOperation(value = "create a car", notes = "a note")
-    @ApiResponses(value = {
-	    @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "car created"),
-	    @ApiResponse(code = HttpURLConnection.HTTP_INTERNAL_ERROR, message = "internal error")
-    })
-    public Response carCreate(@ApiParam(value = "The JSON object which describe a car",
-		required = true) @NotNull Car car) {
-	Gson gson = new Gson();
-	LOGGER.info(car.toString());
-	try {
-	    CarDaoService.create(car);
-	} catch (Exception e) {
-	    LOGGER.error(e);
-	    return Response.status(500).entity(gson.toJson("Unable to create car")).build();
+	@POST
+	@Path("/create")
+	@ApiOperation(value = "create a car", notes = "a note")
+	@ApiResponses(value = { @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "car created"),
+			@ApiResponse(code = HttpURLConnection.HTTP_INTERNAL_ERROR, message = "internal error") })
+	public Response carCreate(
+			@ApiParam(value = "The JSON object which describe a car", required = true) @NotNull Car car) {
+		Gson gson = new Gson();
+		LOGGER.info(car.toString());
+		try {
+			CarDaoService.create(car);
+		} catch (Exception e) {
+			LOGGER.error(e);
+			return Response.status(500).entity(gson.toJson("Unable to create car")).build();
+		}
+		return Response.status(200).entity(gson.toJson(car.getIdNumber())).build();
 	}
-	return Response.status(200).entity(gson.toJson(car.getIdNumber())).build();
-    }
 
-    @GET
-    @Path("/get/{idNumber}")
-    public Response carGet(@NotBlank @PathParam("idNumber") String idNumber) {
-	Gson gson = new Gson();
-	CarView carView = new CarView();
-	Car car = null;
-	try {
-	    LOGGER.info("ID NUMBER RECEIVED: " + idNumber);
-	    car = CarDaoService.read(idNumber).get(0);
-	} catch (Exception e) {
-	    LOGGER.error(e);
-	    return Response.status(400).entity(gson.toJson("no car found")).build();
+	@GET
+	@Path("/get/{idNumber}")
+	public Response carGet(@NotBlank @PathParam("idNumber") String idNumber) {
+		Gson gson = new Gson();
+		CarView carView = new CarView();
+		Car car = null;
+		try {
+			LOGGER.info("ID NUMBER RECEIVED: " + idNumber);
+			car = CarDaoService.read(idNumber).get(0);
+		} catch (Exception e) {
+			LOGGER.error(e);
+			return Response.status(400).entity(gson.toJson("no car found")).build();
+		}
+		return Response.status(200).entity(gson.toJson(carView.fromCar(car))).build();
 	}
-	return Response.status(200).entity(gson.toJson(carView.fromCar(car))).build();
-    }
 
-    @DELETE
-    @Path("/delete/{idNumber}")
-    public Response carDelete(@NotBlank @PathParam("idNumber") String idNumber) {
-	Gson gson = new Gson();
-	String carIdDelete = null;
-	try {
-	    LOGGER.info("ID NUMBER RECEIVED: " + idNumber);
-	    if (CarDaoService.delete(idNumber)) {
-		carIdDelete = idNumber;
-	    } else {
-		throw new Exception("No car found to delete");
-	    }
-	} catch (Exception e) {
-	    LOGGER.error(e);
-	    return Response.status(400).entity(gson.toJson("no car found to delete")).build();
+	@DELETE
+	@Path("/delete/{idNumber}")
+	public Response carDelete(@NotBlank @PathParam("idNumber") String idNumber) {
+		Gson gson = new Gson();
+		String carIdDelete = null;
+		try {
+			LOGGER.info("ID NUMBER RECEIVED: " + idNumber);
+			if (CarDaoService.delete(idNumber)) {
+				carIdDelete = idNumber;
+			} else {
+				throw new Exception("No car found to delete");
+			}
+		} catch (Exception e) {
+			LOGGER.error(e);
+			return Response.status(400).entity(gson.toJson("no car found to delete")).build();
+		}
+		return Response.status(200).entity(gson.toJson(carIdDelete)).build();
 	}
-	return Response.status(200).entity(gson.toJson(carIdDelete)).build();
-    }
 
-    @GET
-    @Path("/")
-    public Response carsGet() {
-	Gson gson = new Gson();
-	ListCarView listCarView = new ListCarView();
-	List<Car> listCar;
-	try {
-	    listCar = CarDaoService.read();
-	} catch (Exception e) {
-	    LOGGER.error(e);
-	    return Response.status(400).entity(gson.toJson("no cars found")).build();
+	@GET
+	@Path("/")
+	public Response carsGet() {
+		Gson gson = new Gson();
+		ListCarView listCarView = new ListCarView();
+		List<Car> listCar;
+		try {
+			listCar = CarDaoService.read();
+		} catch (Exception e) {
+			LOGGER.error(e);
+			return Response.status(400).entity(gson.toJson("no cars found")).build();
+		}
+		return Response.status(200).entity(gson.toJson(listCarView.fromCarList(listCar))).build();
 	}
-	return Response.status(200).entity(gson.toJson(listCarView.fromCarList(listCar))).build();
-    }
 
 }
