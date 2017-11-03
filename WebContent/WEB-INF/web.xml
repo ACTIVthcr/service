@@ -23,7 +23,7 @@
 			<param-value>
 				io.swagger.jaxrs.json,
 				io.swagger.jaxrs.listing,
-				com.jeyni.rest
+				com.jeyni.controller
 			</param-value>
 		</init-param>
 		<init-param>

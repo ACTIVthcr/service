@@ -1,4 +1,4 @@
-package com.jeyni.rest;
+package com.jeyni.controller;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;

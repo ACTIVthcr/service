@@ -3,8 +3,8 @@ package com.jeyni.main;
 import org.apache.log4j.Logger;
 
 import com.jeyni.bean.Car;
+import com.jeyni.controller.CarApi;
 import com.jeyni.dao.CarDaoService;
-import com.jeyni.rest.CarApi;
 
 public class MainCar {
 

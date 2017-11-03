@@ -1,4 +1,4 @@
-package com.jeyni.rest;
+package com.jeyni.controller;
 
 import java.net.HttpURLConnection;
 import java.util.List;
