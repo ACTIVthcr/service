@@ -8,6 +8,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -20,6 +21,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.google.gson.Gson;
 import com.jeyni.bean.Car;
 import com.jeyni.dao.CarDaoService;
+import com.jeyni.process.CarProcess;
 import com.jeyni.view.CarView;
 import com.jeyni.view.ListCarView;
 
@@ -33,10 +35,10 @@ import io.swagger.annotations.ApiResponses;
 @Api(value = "/car")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class CarService {
+public class CarApi {
 
-	private static final Logger LOGGER = Logger.getLogger(CarService.class);
-
+	private static final Logger LOGGER = Logger.getLogger(CarApi.class);
+	
 	@POST
 	@Path("/create")
 	@ApiOperation(value = "create a car", notes = "a note")
@@ -103,6 +105,24 @@ public class CarService {
 			return Response.status(400).entity(gson.toJson("no cars found")).build();
 		}
 		return Response.status(200).entity(gson.toJson(listCarView.fromCarList(listCar))).build();
+	}
+	
+	@PUT
+	@Path("/update")
+	@ApiOperation(value = "create a car", notes = "a note")
+	@ApiResponses(value = { @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "car created"),
+			@ApiResponse(code = HttpURLConnection.HTTP_INTERNAL_ERROR, message = "internal error") })
+	public Response carUpdate(
+			@ApiParam(value = "The JSON object which describe a car", required = true) @NotNull Car car) {
+		Gson gson = new Gson();
+		LOGGER.info(car.toString());
+		try {
+			CarProcess.create(car);
+		} catch (Exception e) {
+			LOGGER.error(e);
+			return Response.status(500).entity(gson.toJson("Unable to create car")).build();
+		}
+		return Response.status(200).entity(gson.toJson(car.getIdNumber())).build();
 	}
 
 }

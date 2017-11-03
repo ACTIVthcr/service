@@ -11,11 +11,12 @@ public class HibernateUtils {
 	}
 
 	private static final SessionFactory sessionFactory;
+	
 	static {
 		try {
 			sessionFactory = new Configuration().configure().buildSessionFactory();
 		} catch (HibernateException e) {
-			throw new RuntimeException("Pb config" + e.getMessage());
+			throw new RuntimeException("Pb config: " + e.getMessage());
 		}
 	}
 

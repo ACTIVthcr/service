@@ -4,11 +4,11 @@ import org.apache.log4j.Logger;
 
 import com.jeyni.bean.Car;
 import com.jeyni.dao.CarDaoService;
-import com.jeyni.rest.CarService;
+import com.jeyni.rest.CarApi;
 
 public class MainCar {
 
-	private static final Logger LOGGER = Logger.getLogger(CarService.class);
+	private static final Logger LOGGER = Logger.getLogger(CarApi.class);
 
 	private MainCar() {
 	};

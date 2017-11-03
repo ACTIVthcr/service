@@ -61,7 +61,7 @@ public class CarDaoService {
 		return list;
 	}
 
-	public static List<Car> update(String idNumber) {
+	public static void update(String idNumber) {
 		final List<Car> list = new LinkedList<>();
 		Session session = HibernateUtils.getSession();
 		@SuppressWarnings("unchecked")
@@ -75,7 +75,6 @@ public class CarDaoService {
 		trans.commit();
 		session.close();
 		LOGGER.info("car updated: " + list.toString());
-		return list;
 	}
 
 	public static boolean delete(String idNumber) {

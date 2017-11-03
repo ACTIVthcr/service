@@ -17,6 +17,7 @@ public class CarTest {
 
 	@Test
 	public void test() {
+		//GIVEN
 		Assert.assertNotNull(1);
 	}
 
