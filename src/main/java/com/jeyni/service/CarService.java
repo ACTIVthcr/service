@@ -19,8 +19,8 @@ public class CarService {
 		return CarDaoService.read();
 	}
 	
-	public static void update(String idNumber) {
-		CarDaoService.update(idNumber);
+	public static void update(String idNumber, Car car) {
+		CarDaoService.update(idNumber, car);
 	}
 	
 	public static boolean delete(String idNumber) {

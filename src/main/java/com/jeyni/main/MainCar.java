@@ -14,11 +14,8 @@ public class MainCar {
 	};
 
 	public static void main(String[] args) {
-		Car car = Car.builder().name("test1").ownerName("ownertest").build();
-		String UUIDCar = CarDaoService.create(car);
-		LOGGER.info(CarDaoService.read(UUIDCar));
 		LOGGER.info(CarDaoService.read());
-		LOGGER.info(CarDaoService.delete(UUIDCar));
+//		CarDaoService.delete("bde62af4-d29e-474b-85db-7e0944c7ebef");
 	}
 
 }

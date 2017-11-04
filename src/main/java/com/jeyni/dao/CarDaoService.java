@@ -43,8 +43,11 @@ public class CarDaoService {
 		for (final Object o : query.list()) {
 			list.add((Car) o);
 		}
+		if (list.size() > 1) {
+			throw new IllegalStateException("not unique id");
+		}
 		session.close();
-		LOGGER.info("car read: " + list.toString());
+		LOGGER.info("car read: " + list.get(0).toString());
 		return list;
 	}
 
@@ -61,20 +64,18 @@ public class CarDaoService {
 		return list;
 	}
 
-	public static void update(String idNumber) {
-		final List<Car> list = new LinkedList<>();
+	public static void update(String idNumber, Car car) {
+		Car carToUpdate = CarDaoService.read(idNumber).get(0);
 		Session session = HibernateUtils.getSession();
-		@SuppressWarnings("unchecked")
-		Query<Car> query = session.createQuery(SqlQuery);
-		query.setParameter(idNumberString, idNumber);
 		Transaction trans = session.beginTransaction();
-		for (final Object o : query.list()) {
-			list.add((Car) o);
-			session.update((Car) o);
-		}
+		carToUpdate.setIdNumber(car.getIdNumber());
+		carToUpdate.setName(car.getName());
+		carToUpdate.setOwnerName(car.getOwnerName());
+		carToUpdate.setSeatNumber(car.getSeatNumber());
+		session.merge(carToUpdate);
 		trans.commit();
 		session.close();
-		LOGGER.info("car updated: " + list.toString());
+		LOGGER.info("car updated: " + carToUpdate);
 	}
 
 	public static boolean delete(String idNumber) {
