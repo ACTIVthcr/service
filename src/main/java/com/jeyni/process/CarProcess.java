@@ -21,10 +21,4 @@ public class CarProcess {
 		return CarService.read(idNumber).get(0);
 	}
 	
-	public static void changeOwner(String idNumber, String ownerName) {
-		Car car = CarService.read(idNumber).get(0);
-		car.setOwnerName(ownerName);
-		CarService.update(idNumber, car);
-	}
-	
 }

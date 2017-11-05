@@ -3,12 +3,12 @@ package com.jeyni.main;
 import org.apache.log4j.Logger;
 
 import com.jeyni.bean.Car;
-import com.jeyni.controller.CarApi;
+import com.jeyni.controller.CarController;
 import com.jeyni.dao.CarDaoService;
 
 public class MainCar {
 
-	private static final Logger LOGGER = Logger.getLogger(CarApi.class);
+	private static final Logger LOGGER = Logger.getLogger(CarController.class);
 
 	private MainCar() {
 	};

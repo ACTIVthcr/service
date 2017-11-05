@@ -35,13 +35,13 @@ import io.swagger.annotations.ApiResponses;
 @Api(value = "/car")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class CarApi {
+public class CarController {
 
-	private static final Logger LOGGER = Logger.getLogger(CarApi.class);
+	private static final Logger LOGGER = Logger.getLogger(CarController.class);
 	
 	@POST
 	@Path("/create")
-	@ApiOperation(value = "create a car", notes = "a note")
+	@ApiOperation(value = "create a car")
 	@ApiResponses(value = { @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "car created"),
 			@ApiResponse(code = HttpURLConnection.HTTP_INTERNAL_ERROR, message = "internal error") })
 	public Response carCreate(
