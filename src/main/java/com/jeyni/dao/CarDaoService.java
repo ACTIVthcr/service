@@ -30,7 +30,7 @@ public class CarDaoService {
 		session.save(car);
 		trans.commit();
 		session.close();
-		LOGGER.info("idNumber created: " + car.getIdNumber());
+		LOGGER.info("car with idNumber created: " + car.getIdNumber());
 		return car.getIdNumber();
 	}
 
@@ -66,10 +66,7 @@ public class CarDaoService {
 		Car carToUpdate = CarDaoService.read(idNumber);
 		Session session = HibernateUtils.getSession();
 		Transaction trans = session.beginTransaction();
-		carToUpdate.setIdNumber(car.getIdNumber());
-		carToUpdate.setName(car.getName());
-		carToUpdate.setOwnerName(car.getOwnerName());
-		carToUpdate.setSeatNumber(car.getSeatNumber());
+		carToUpdate = car;
 		session.merge(carToUpdate);
 		trans.commit();
 		session.close();

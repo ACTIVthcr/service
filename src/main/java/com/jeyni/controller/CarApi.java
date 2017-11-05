@@ -38,7 +38,7 @@ import io.swagger.annotations.ApiResponses;
 public class CarApi {
 
 	private static final Logger LOGGER = Logger.getLogger(CarApi.class);
-	
+
 	@POST
 	@Path("/create")
 	@ApiOperation(value = "create a car", notes = "a note")
@@ -100,9 +100,11 @@ public class CarApi {
 			LOGGER.error(e);
 			return Response.status(400).entity(gson.toJson("no cars found")).build();
 		}
-		return Response.status(200).entity(gson.toJson(listCarView.fromCarList(listCar))).build();
+		return Response.status(200).header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.entity(gson.toJson(listCarView.fromCarList(listCar))).build();
 	}
-	
+
 	@PUT
 	@Path("/update")
 	@ApiOperation(value = "create a car", notes = "a note")
