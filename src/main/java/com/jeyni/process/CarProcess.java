@@ -18,11 +18,11 @@ public class CarProcess {
 	}
 	
 	public static Car readOne(String idNumber) {
-		return CarService.read(idNumber).get(0);
+		return CarService.read(idNumber);
 	}
 	
 	public static void changeOwner(String idNumber, String ownerName) {
-		Car car = CarService.read(idNumber).get(0);
+		Car car = CarService.read(idNumber);
 		car.setOwnerName(ownerName);
 		CarService.update(idNumber, car);
 	}

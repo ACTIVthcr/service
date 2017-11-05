@@ -34,7 +34,7 @@ public class CarDaoService {
 		return car.getIdNumber();
 	}
 
-	public static List<Car> read(String idNumber) {
+	public static Car read(String idNumber) {
 		final List<Car> list = new LinkedList<>();
 		Session session = HibernateUtils.getSession();
 		@SuppressWarnings("unchecked")
@@ -48,7 +48,7 @@ public class CarDaoService {
 		}
 		session.close();
 		LOGGER.info("car read: " + list.get(0).toString());
-		return list;
+		return list.get(0);
 	}
 
 	public static List<Car> read() {
@@ -65,7 +65,7 @@ public class CarDaoService {
 	}
 
 	public static void update(String idNumber, Car car) {
-		Car carToUpdate = CarDaoService.read(idNumber).get(0);
+		Car carToUpdate = CarDaoService.read(idNumber);
 		Session session = HibernateUtils.getSession();
 		Transaction trans = session.beginTransaction();
 		carToUpdate.setIdNumber(car.getIdNumber());

@@ -65,10 +65,10 @@ public class CarApi {
 		Car car = null;
 		try {
 			LOGGER.info("ID NUMBER RECEIVED: " + idNumber);
-			car = CarDaoService.read(idNumber).get(0);
+			car = CarDaoService.read(idNumber);
 		} catch (Exception e) {
 			LOGGER.error(e);
-			return Response.status(400).entity(gson.toJson("no car found")).build();
+			return Response.status(400).entity(gson.toJson("car not found for id: " + idNumber)).build();
 		}
 		return Response.status(200).entity(gson.toJson(carView.fromCar(car))).build();
 	}

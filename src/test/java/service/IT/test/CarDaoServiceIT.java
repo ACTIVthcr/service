@@ -27,11 +27,11 @@ public class CarDaoServiceIT {
 		// GIVEN
 		String newName = "test1_updated";
 		String CarUUID = CarDaoService.create(Car.builder().name("test1").ownerName("ownertest").build());
-		Car car = CarDaoService.read(CarUUID).get(0);
+		Car car = CarDaoService.read(CarUUID);
 		// WHEN
 		car.setName(newName);
 		CarService.update(CarUUID, car);
-		Car carUpdated = CarService.read(CarUUID).get(0);
+		Car carUpdated = CarService.read(CarUUID);
 		// ASSERT
 		assertThat(carUpdated.getName()).isEqualToIgnoringCase(newName);
 		assertThat(CarDaoService.delete(CarUUID)).isTrue();
