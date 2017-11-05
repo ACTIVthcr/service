@@ -76,19 +76,14 @@ public class CarDaoService {
 		LOGGER.info("car updated: " + carToUpdate);
 	}
 
-	public static boolean delete(String idNumber) {
+	public static void delete(String idNumber) {
 		Session session = HibernateUtils.getSession();
-		Query<?> query = session.createQuery("delete Car where idNumber = :idNumber");
-		query.setParameter(idNumberString, idNumber);
+		Car car = CarDaoService.read(idNumber);
 		Transaction trans = session.beginTransaction();
-		boolean isDeleted = false;
-		if (query.executeUpdate() > 0) {
-			isDeleted = true;
-			LOGGER.info("Car with idNumber: " + idNumber + " is deleted");
-		}
+		session.delete(car);
 		trans.commit();
+		LOGGER.info("Car with idNumber: " + car.getIdNumber() + " is deleted");
 		session.close();
-		return isDeleted;
 	}
 
 }

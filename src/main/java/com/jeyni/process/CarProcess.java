@@ -9,8 +9,8 @@ public class CarProcess {
 		return CarService.create(car);
 	}
 	
-	public static Boolean delete(String idNumber) {
-		return CarService.delete(idNumber);
+	public static void delete(String idNumber) {
+		CarService.delete(idNumber);
 	}
 	
 	public static void update(String idNumber, Car car) {
@@ -19,12 +19,6 @@ public class CarProcess {
 	
 	public static Car readOne(String idNumber) {
 		return CarService.read(idNumber);
-	}
-	
-	public static void changeOwner(String idNumber, String ownerName) {
-		Car car = CarService.read(idNumber);
-		car.setOwnerName(ownerName);
-		CarService.update(idNumber, car);
 	}
 	
 }
