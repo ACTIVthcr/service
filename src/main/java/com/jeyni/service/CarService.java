@@ -11,7 +11,7 @@ public class CarService {
 		return CarDaoService.create(car);
 	}
 	
-	public static List<Car> read(String idNumber) {
+	public static Car read(String idNumber) {
 		return CarDaoService.read(idNumber);
 	}
 	
