@@ -23,8 +23,8 @@ public class CarService {
 		CarDaoService.update(idNumber, car);
 	}
 	
-	public static boolean delete(String idNumber) {
-		return CarDaoService.delete(idNumber);
+	public static void delete(String idNumber) {
+		CarDaoService.delete(idNumber);
 	}
 	
 }

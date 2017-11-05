@@ -80,11 +80,7 @@ public class CarApi {
 		String carIdDelete = null;
 		try {
 			LOGGER.info("ID NUMBER RECEIVED: " + idNumber);
-			if (CarDaoService.delete(idNumber)) {
-				carIdDelete = idNumber;
-			} else {
-				throw new Exception("No car found to delete");
-			}
+			CarDaoService.delete(idNumber);
 		} catch (Exception e) {
 			LOGGER.error(e);
 			return Response.status(400).entity(gson.toJson("no car found to delete")).build();

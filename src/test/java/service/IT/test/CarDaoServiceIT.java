@@ -19,7 +19,7 @@ public class CarDaoServiceIT {
 		// ASSERT
 		assertThat(CarUUID).isNotEmpty();
 		assertThat(CarDaoService.read(CarUUID)).isNotNull();
-		assertThat(CarDaoService.delete(CarUUID)).isTrue();
+		CarDaoService.delete(CarUUID);
 	}
 	
 	@Test
@@ -34,7 +34,7 @@ public class CarDaoServiceIT {
 		Car carUpdated = CarService.read(CarUUID);
 		// ASSERT
 		assertThat(carUpdated.getName()).isEqualToIgnoringCase(newName);
-		assertThat(CarDaoService.delete(CarUUID)).isTrue();
+		CarDaoService.delete(CarUUID);
 	}
 	
 }
