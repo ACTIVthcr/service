@@ -37,8 +37,7 @@ public class CarDaoService {
 	public static Car read(String idNumber) {
 		final List<Car> list = new LinkedList<>();
 		Session session = HibernateUtils.getSession();
-		@SuppressWarnings("unchecked")
-		Query<Car> query = session.createQuery(SqlQuery);
+		Query<?> query = session.createQuery(SqlQuery);
 		query.setParameter(idNumberString, idNumber);
 		for (final Object o : query.list()) {
 			list.add((Car) o);
@@ -54,8 +53,7 @@ public class CarDaoService {
 	public static List<Car> read() {
 		final List<Car> list = new LinkedList<>();
 		Session session = HibernateUtils.getSession();
-		@SuppressWarnings("unchecked")
-		Query<Car> query = session.createQuery("from Car");
+		Query<?> query = session.createQuery("from Car");
 		for (final Object o : query.list()) {
 			list.add((Car) o);
 		}
@@ -80,8 +78,7 @@ public class CarDaoService {
 
 	public static boolean delete(String idNumber) {
 		Session session = HibernateUtils.getSession();
-		@SuppressWarnings("unchecked")
-		Query<Car> query = session.createQuery("delete Car where idNumber = :idNumber");
+		Query<?> query = session.createQuery("delete Car where idNumber = :idNumber");
 		query.setParameter(idNumberString, idNumber);
 		Transaction trans = session.beginTransaction();
 		boolean isDeleted = false;
